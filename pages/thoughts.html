@@ -1,0 +1,26 @@
+---
+layout: page
+title: Thoughts
+permalink: /thoughts/
+subtitle: Writing beyond research
+---
+
+<ul class="post-list">
+  {% assign posts = site.thoughts | sort: 'date' | reverse %}
+  {% for post in posts %}
+  <li class="post-list-item">
+    <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+    <div class="post-list-meta">
+      <time>{{ post.date | date: "%B %d, %Y" }}</time>
+      <span class="post-tag tag-thoughts">Thoughts</span>
+    </div>
+    {% if post.excerpt %}
+    <p class="post-list-excerpt">{{ post.excerpt | strip_html | truncate: 200 }}</p>
+    {% endif %}
+  </li>
+  {% endfor %}
+</ul>
+
+{% if site.thoughts.size == 0 %}
+<p style="color: var(--color-text-light); font-size: 0.9rem;">Posts coming soon.</p>
+{% endif %}

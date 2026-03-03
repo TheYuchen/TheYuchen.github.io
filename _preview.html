@@ -1,0 +1,1301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yuchen (Ethan) Yuan - Personal Website</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;500;600;700&family=Inter:wght@400;450;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        /* ===========================
+           Yuchen (Ethan) Yuan
+           Personal Academic Homepage
+           Warm & Approachable Theme
+           =========================== */
+
+        /* --- CSS Variables --- */
+        :root {
+          --color-bg: #f8f9fb;
+          --color-bg-alt: #eef1f5;
+          --color-surface: #ffffff;
+          --color-text: #2e3440;
+          --color-text-light: #6b7280;
+          --color-heading: #1e2533;
+          --color-accent: #4a6d8c;
+          --color-accent-hover: #3a5a76;
+          --color-accent-light: #e3ecf3;
+          --color-sage: #5a8a7a;
+          --color-sage-light: #e4f0ec;
+          --color-border: #dce1e8;
+          --color-link: #4a6d8c;
+
+          --font-heading: 'Crimson Pro', Georgia, serif;
+          --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+          --font-mono: 'JetBrains Mono', monospace;
+
+          --max-width: 820px;
+          --nav-height: 64px;
+          --radius: 8px;
+          --shadow-sm: 0 1px 3px rgba(30, 37, 51, 0.06);
+          --shadow-md: 0 4px 12px rgba(30, 37, 51, 0.08);
+          --transition: 0.2s ease;
+        }
+
+        /* --- Dark Mode --- */
+        [data-theme="dark"] {
+          --color-bg: #2b3040;
+          --color-bg-alt: #323848;
+          --color-surface: #3a4155;
+          --color-text: #d8dce4;
+          --color-text-light: #a0a8b8;
+          --color-heading: #eaeff5;
+          --color-accent: #7ab0de;
+          --color-accent-hover: #94c2ea;
+          --color-accent-light: #343f55;
+          --color-sage: #85ccb0;
+          --color-sage-light: #2e4a40;
+          --color-border: #454e62;
+          --color-link: #7ab0de;
+          --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.18);
+          --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.22);
+        }
+
+        [data-theme="dark"] .site-nav {
+          background: rgba(43, 48, 64, 0.92);
+        }
+
+        [data-theme="dark"] .post-content pre {
+          background: #1e2430;
+        }
+
+        /* --- Reset & Base --- */
+        *, *::before, *::after {
+          box-sizing: border-box;
+          margin: 0;
+          padding: 0;
+        }
+
+        html {
+          font-size: 17px;
+          scroll-behavior: smooth;
+        }
+
+        body {
+          font-family: var(--font-body);
+          color: var(--color-text);
+          background-color: var(--color-bg);
+          line-height: 1.7;
+          -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+          color: var(--color-link);
+          text-decoration: none;
+          transition: color var(--transition);
+        }
+
+        a:hover {
+          color: var(--color-accent-hover);
+        }
+
+        img {
+          max-width: 100%;
+          height: auto;
+          border-radius: var(--radius);
+        }
+
+        /* --- Navigation --- */
+        .site-nav {
+          position: sticky;
+          top: 0;
+          z-index: 100;
+          background: rgba(248, 249, 251, 0.92);
+          backdrop-filter: blur(12px);
+          border-bottom: 1px solid var(--color-border);
+          height: var(--nav-height);
+        }
+
+        .nav-container {
+          max-width: 1100px;
+          margin: 0 auto;
+          padding: 0 2rem;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          height: 100%;
+        }
+
+        .site-logo {
+          text-decoration: none;
+        }
+
+        .logo-text {
+          font-family: var(--font-heading);
+          font-size: 1.3rem;
+          font-weight: 600;
+          color: var(--color-heading);
+          letter-spacing: -0.01em;
+        }
+
+        .nav-links {
+          display: flex;
+          list-style: none;
+          gap: 0.25rem;
+          align-items: center;
+        }
+
+        .nav-links a {
+          display: block;
+          padding: 0.4rem 0.85rem;
+          font-size: 0.88rem;
+          font-weight: 450;
+          color: var(--color-text-light);
+          border-radius: 6px;
+          transition: all var(--transition);
+          text-decoration: none;
+          cursor: pointer;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+          color: var(--color-accent);
+          background: var(--color-accent-light);
+        }
+
+        /* Dropdown */
+        .nav-dropdown {
+          position: relative;
+        }
+
+        .caret {
+          font-size: 0.65em;
+          margin-left: 2px;
+        }
+
+        .dropdown-menu {
+          display: none;
+          position: absolute;
+          top: 100%;
+          left: 0;
+          background: var(--color-surface);
+          border: 1px solid var(--color-border);
+          border-radius: var(--radius);
+          box-shadow: var(--shadow-md);
+          min-width: 160px;
+          list-style: none;
+          padding: 0.35rem 0;
+          z-index: 200;
+        }
+
+        .dropdown-menu li a {
+          padding: 0.45rem 1rem;
+          font-size: 0.85rem;
+          border-radius: 0;
+        }
+
+        .nav-dropdown:hover .dropdown-menu {
+          display: block;
+        }
+
+        /* Mobile nav toggle */
+        .nav-toggle {
+          display: none;
+          background: none;
+          border: none;
+          cursor: pointer;
+          padding: 0.5rem;
+          flex-direction: column;
+          gap: 5px;
+        }
+
+        .nav-toggle span {
+          display: block;
+          width: 22px;
+          height: 2px;
+          background: var(--color-text);
+          border-radius: 2px;
+          transition: all var(--transition);
+        }
+
+        /* --- Main Content --- */
+        .site-content {
+          max-width: var(--max-width);
+          margin: 0 auto;
+          padding: 2.5rem 1.5rem 4rem;
+          min-height: calc(100vh - var(--nav-height) - 120px);
+        }
+
+        /* --- Home Page --- */
+        .home-hero {
+          display: flex;
+          align-items: flex-start;
+          gap: 2.5rem;
+          margin-bottom: 3rem;
+          padding-bottom: 2.5rem;
+          border-bottom: 1px solid var(--color-border);
+        }
+
+        .hero-photo {
+          flex-shrink: 0;
+        }
+
+        .hero-photo img,
+        .hero-photo .photo-placeholder {
+          width: 140px;
+          height: 140px;
+          border-radius: 50%;
+          object-fit: cover;
+          border: 4px solid var(--color-bg-alt);
+          box-shadow: var(--shadow-sm);
+        }
+
+        .photo-placeholder {
+          background: var(--color-bg-alt);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: var(--color-text-light);
+          font-size: 0.8rem;
+        }
+
+        .hero-text h1 {
+          font-family: var(--font-heading);
+          font-size: 2.2rem;
+          font-weight: 600;
+          color: var(--color-heading);
+          line-height: 1.2;
+          margin-bottom: 0.5rem;
+        }
+
+        .hero-text .affiliation {
+          font-size: 1.05rem;
+          color: var(--color-text-light);
+          margin-bottom: 1rem;
+        }
+
+        .hero-text .intro {
+          font-size: 0.95rem;
+          line-height: 1.75;
+          color: var(--color-text);
+        }
+
+        .hero-links {
+          display: flex;
+          gap: 0.75rem;
+          margin-top: 1.2rem;
+          flex-wrap: wrap;
+        }
+
+        .hero-links a {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.35rem;
+          font-size: 0.85rem;
+          font-weight: 500;
+          padding: 0.4rem 0.9rem;
+          border-radius: 20px;
+          border: 1px solid var(--color-border);
+          color: var(--color-text-light);
+          transition: all var(--transition);
+        }
+
+        .hero-links a:hover {
+          border-color: var(--color-accent);
+          color: var(--color-accent);
+          background: var(--color-accent-light);
+        }
+
+        /* --- Sections --- */
+        .home-section {
+          margin-bottom: 2.5rem;
+        }
+
+        .home-section h2 {
+          font-family: var(--font-heading);
+          font-size: 1.5rem;
+          font-weight: 600;
+          color: var(--color-heading);
+          margin-bottom: 1.2rem;
+          padding-bottom: 0.4rem;
+          border-bottom: 2px solid var(--color-accent-light);
+        }
+
+        /* --- News/Updates --- */
+        .news-list {
+          list-style: none;
+        }
+
+        .news-list li {
+          padding: 0.7rem 0;
+          border-bottom: 1px solid var(--color-border);
+          display: flex;
+          gap: 1rem;
+          align-items: baseline;
+        }
+
+        .news-list li:last-child {
+          border-bottom: none;
+        }
+
+        .news-date {
+          flex-shrink: 0;
+          font-size: 0.82rem;
+          color: var(--color-text-light);
+          font-family: var(--font-mono);
+          min-width: 90px;
+        }
+
+        .news-text {
+          font-size: 0.92rem;
+        }
+
+        /* --- Post Lists --- */
+        .post-list {
+          list-style: none;
+        }
+
+        .post-list-item {
+          padding: 1.2rem 0;
+          border-bottom: 1px solid var(--color-border);
+        }
+
+        .post-list-item:last-child {
+          border-bottom: none;
+        }
+
+        .post-list-item h3 {
+          font-family: var(--font-heading);
+          font-size: 1.2rem;
+          font-weight: 600;
+          margin-bottom: 0.3rem;
+        }
+
+        .post-list-item h3 a {
+          color: var(--color-heading);
+        }
+
+        .post-list-item h3 a:hover {
+          color: var(--color-accent);
+        }
+
+        .post-list-meta {
+          font-size: 0.82rem;
+          color: var(--color-text-light);
+          margin-bottom: 0.4rem;
+        }
+
+        .post-list-excerpt {
+          font-size: 0.9rem;
+          color: var(--color-text-light);
+          line-height: 1.6;
+        }
+
+        /* --- Page --- */
+        .page-header {
+          margin-bottom: 2rem;
+        }
+
+        .page-header h1 {
+          font-family: var(--font-heading);
+          font-size: 2rem;
+          font-weight: 600;
+          color: var(--color-heading);
+        }
+
+        .page-subtitle {
+          font-size: 1.05rem;
+          color: var(--color-text-light);
+          margin-top: 0.4rem;
+        }
+
+        .page-content {
+          font-size: 0.95rem;
+        }
+
+        .page-content h2 {
+          font-family: var(--font-heading);
+          font-size: 1.4rem;
+          font-weight: 600;
+          color: var(--color-heading);
+          margin: 2rem 0 0.8rem;
+        }
+
+        .page-content h3 {
+          font-family: var(--font-heading);
+          font-size: 1.15rem;
+          font-weight: 600;
+          color: var(--color-heading);
+          margin: 1.5rem 0 0.6rem;
+        }
+
+        .page-content p {
+          margin-bottom: 1rem;
+        }
+
+        .page-content ul, .page-content ol {
+          margin: 0.5rem 0 1rem 1.5rem;
+        }
+
+        .page-content li {
+          margin-bottom: 0.3rem;
+        }
+
+        /* --- Post --- */
+        .post-header {
+          margin-bottom: 2rem;
+          padding-bottom: 1.5rem;
+          border-bottom: 1px solid var(--color-border);
+        }
+
+        .post-header h1 {
+          font-family: var(--font-heading);
+          font-size: 2rem;
+          font-weight: 600;
+          color: var(--color-heading);
+          line-height: 1.3;
+        }
+
+        .post-meta {
+          display: flex;
+          align-items: center;
+          gap: 0.75rem;
+          margin-bottom: 0.6rem;
+          font-size: 0.85rem;
+          color: var(--color-text-light);
+        }
+
+        .post-tag {
+          display: inline-block;
+          padding: 0.15rem 0.6rem;
+          border-radius: 12px;
+          font-size: 0.75rem;
+          font-weight: 500;
+        }
+
+        .tag-research {
+          background: var(--color-sage-light);
+          color: var(--color-sage);
+        }
+
+        .tag-thoughts {
+          background: var(--color-accent-light);
+          color: var(--color-accent);
+        }
+
+        .post-content {
+          font-size: 0.95rem;
+        }
+
+        .post-content p {
+          margin-bottom: 1.2rem;
+        }
+
+        .post-content blockquote {
+          border-left: 3px solid var(--color-accent);
+          padding: 0.5rem 1.2rem;
+          margin: 1.5rem 0;
+          background: var(--color-bg-alt);
+          border-radius: 0 var(--radius) var(--radius) 0;
+          color: var(--color-text-light);
+          font-style: italic;
+        }
+
+        .post-content pre {
+          background: #1e2533;
+          color: #dce1e8;
+          padding: 1.2rem;
+          border-radius: var(--radius);
+          overflow-x: auto;
+          margin: 1.5rem 0;
+          font-family: var(--font-mono);
+          font-size: 0.85rem;
+          line-height: 1.5;
+        }
+
+        .post-content code {
+          font-family: var(--font-mono);
+          font-size: 0.88em;
+          background: var(--color-bg-alt);
+          padding: 0.15em 0.4em;
+          border-radius: 4px;
+        }
+
+        .post-content pre code {
+          background: none;
+          padding: 0;
+        }
+
+        .post-footer {
+          margin-top: 3rem;
+          padding-top: 1.5rem;
+          border-top: 1px solid var(--color-border);
+        }
+
+        .back-link {
+          font-size: 0.9rem;
+          color: var(--color-text-light);
+        }
+
+        .back-link:hover {
+          color: var(--color-accent);
+        }
+
+        /* --- Publications --- */
+        .pub-list {
+          list-style: none;
+        }
+
+        .pub-item {
+          padding: 1.2rem 0;
+          border-bottom: 1px solid var(--color-border);
+        }
+
+        .pub-item:last-child {
+          border-bottom: none;
+        }
+
+        .pub-title {
+          font-family: var(--font-heading);
+          font-size: 1.05rem;
+          font-weight: 600;
+          color: var(--color-heading);
+          margin-bottom: 0.3rem;
+        }
+
+        .pub-authors {
+          font-size: 0.88rem;
+          color: var(--color-text-light);
+          margin-bottom: 0.2rem;
+        }
+
+        .pub-authors strong {
+          color: var(--color-text);
+        }
+
+        .pub-venue {
+          font-size: 0.85rem;
+          color: var(--color-text-light);
+          font-style: italic;
+          margin-bottom: 0.4rem;
+        }
+
+        .pub-links {
+          display: flex;
+          gap: 0.5rem;
+          flex-wrap: wrap;
+        }
+
+        .pub-links a {
+          font-size: 0.78rem;
+          font-weight: 500;
+          padding: 0.2rem 0.6rem;
+          border-radius: 4px;
+          border: 1px solid var(--color-border);
+          color: var(--color-text-light);
+          transition: all var(--transition);
+        }
+
+        .pub-links a:hover {
+          border-color: var(--color-accent);
+          color: var(--color-accent);
+        }
+
+        /* --- Projects Grid --- */
+        .project-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+          gap: 1.5rem;
+        }
+
+        .project-card {
+          background: var(--color-surface);
+          border: 1px solid var(--color-border);
+          border-radius: var(--radius);
+          padding: 1.5rem;
+          transition: all var(--transition);
+        }
+
+        .project-card:hover {
+          box-shadow: var(--shadow-md);
+          border-color: var(--color-accent);
+          transform: translateY(-2px);
+        }
+
+        .project-card h3 {
+          font-family: var(--font-heading);
+          font-size: 1.1rem;
+          font-weight: 600;
+          margin-bottom: 0.5rem;
+        }
+
+        .project-card h3 a {
+          color: var(--color-heading);
+        }
+
+        .project-card h3 a:hover {
+          color: var(--color-accent);
+        }
+
+        .project-card p {
+          font-size: 0.88rem;
+          color: var(--color-text-light);
+          line-height: 1.6;
+          margin-bottom: 0.8rem;
+        }
+
+        .project-tags {
+          display: flex;
+          gap: 0.4rem;
+          flex-wrap: wrap;
+        }
+
+        .project-tag {
+          font-size: 0.72rem;
+          font-weight: 500;
+          padding: 0.15rem 0.5rem;
+          border-radius: 4px;
+          background: var(--color-bg-alt);
+          color: var(--color-text-light);
+        }
+
+        /* --- CV Timeline --- */
+        .cv-section {
+          margin-bottom: 2rem;
+        }
+
+        .cv-entry {
+          display: flex;
+          gap: 1.5rem;
+          padding: 1rem 0;
+          border-bottom: 1px solid var(--color-border);
+        }
+
+        .cv-entry:last-child {
+          border-bottom: none;
+        }
+
+        .cv-year {
+          flex-shrink: 0;
+          font-size: 0.85rem;
+          color: var(--color-text-light);
+          font-family: var(--font-mono);
+          min-width: 100px;
+          padding-top: 0.1rem;
+        }
+
+        .cv-details h3 {
+          font-size: 1rem;
+          font-weight: 600;
+          color: var(--color-heading);
+          margin-bottom: 0.2rem;
+        }
+
+        .cv-details p {
+          font-size: 0.9rem;
+          color: var(--color-text-light);
+        }
+
+        /* --- Footer --- */
+        .site-footer {
+          background: var(--color-bg-alt);
+          border-top: 1px solid var(--color-border);
+          padding: 2rem 1.5rem;
+        }
+
+        .footer-container {
+          max-width: var(--max-width);
+          margin: 0 auto;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+
+        .footer-info p {
+          font-size: 0.85rem;
+          color: var(--color-text-light);
+        }
+
+        .footer-affiliation {
+          font-size: 0.8rem !important;
+        }
+
+        .footer-links {
+          display: flex;
+          gap: 1rem;
+        }
+
+        .footer-links a {
+          color: var(--color-text-light);
+          transition: color var(--transition);
+        }
+
+        .footer-links a:hover {
+          color: var(--color-accent);
+        }
+
+        /* --- Responsive --- */
+        @media (max-width: 768px) {
+          html {
+            font-size: 16px;
+          }
+
+          .nav-toggle {
+            display: flex;
+          }
+
+          .nav-links {
+            display: none;
+            position: absolute;
+            top: var(--nav-height);
+            left: 0;
+            right: 0;
+            background: var(--color-surface);
+            border-bottom: 1px solid var(--color-border);
+            flex-direction: column;
+            padding: 0.75rem;
+            box-shadow: var(--shadow-md);
+          }
+
+          .nav-links.open {
+            display: flex;
+          }
+
+          .dropdown-menu {
+            position: static;
+            box-shadow: none;
+            border: none;
+            padding-left: 1rem;
+            display: none;
+          }
+
+          .nav-dropdown.open .dropdown-menu {
+            display: block;
+          }
+
+          .home-hero {
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 1.5rem;
+          }
+
+          .hero-photo img,
+          .hero-photo .photo-placeholder {
+            width: 120px;
+            height: 120px;
+          }
+
+          .hero-links {
+            justify-content: center;
+          }
+
+          .news-list li {
+            flex-direction: column;
+            gap: 0.2rem;
+          }
+
+          .cv-entry {
+            flex-direction: column;
+            gap: 0.3rem;
+          }
+
+          .footer-container {
+            flex-direction: column;
+            gap: 1rem;
+            text-align: center;
+          }
+
+          .project-grid {
+            grid-template-columns: 1fr;
+          }
+        }
+
+        /* --- Dark Mode Toggle --- */
+        .theme-toggle {
+          background: none;
+          border: 1px solid var(--color-border);
+          border-radius: 50%;
+          width: 34px;
+          height: 34px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          color: var(--color-text-light);
+          transition: all var(--transition);
+          padding: 0;
+          margin-left: 0.5rem;
+        }
+
+        .theme-toggle:hover {
+          border-color: var(--color-accent);
+          color: var(--color-accent);
+          background: var(--color-accent-light);
+        }
+
+        .theme-toggle .icon-sun,
+        .theme-toggle .icon-moon {
+          width: 16px;
+          height: 16px;
+        }
+
+        .theme-toggle .icon-sun { display: none; }
+        .theme-toggle .icon-moon { display: block; }
+
+        [data-theme="dark"] .theme-toggle .icon-sun { display: block; }
+        [data-theme="dark"] .theme-toggle .icon-moon { display: none; }
+
+        /* --- Scroll Hint & Home About Reveal --- */
+        .scroll-hint {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 0.3rem;
+          padding: 1.5rem 0 0.5rem;
+          cursor: pointer;
+          opacity: 0.5;
+          transition: opacity 0.3s ease;
+        }
+
+        .scroll-hint:hover {
+          opacity: 0.85;
+        }
+
+        .scroll-hint-text {
+          font-size: 0.82rem;
+          color: var(--color-text-light);
+          letter-spacing: 0.03em;
+        }
+
+        .scroll-hint svg {
+          color: var(--color-text-light);
+          animation: bounce-down 1.8s ease-in-out infinite;
+        }
+
+        @keyframes bounce-down {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(6px); }
+        }
+
+        .home-about {
+          max-height: 0;
+          overflow: hidden;
+          opacity: 0;
+          transition: max-height 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+                      opacity 0.6s ease 0.15s;
+        }
+
+        .home-about.revealed {
+          max-height: 2000px;
+          opacity: 1;
+        }
+
+        .home-about-inner {
+          padding: 2rem 0 1rem;
+        }
+
+        .home-about-inner h2 {
+          font-family: var(--font-heading);
+          font-size: 1.5rem;
+          font-weight: 600;
+          color: var(--color-heading);
+          margin-bottom: 1.2rem;
+          padding-bottom: 0.4rem;
+          border-bottom: 2px solid var(--color-accent-light);
+        }
+
+        .home-about-inner h3 {
+          font-family: var(--font-heading);
+          font-size: 1.15rem;
+          font-weight: 600;
+          color: var(--color-heading);
+          margin: 1.5rem 0 0.6rem;
+        }
+
+        .home-about-inner p {
+          font-size: 0.95rem;
+          line-height: 1.75;
+          margin-bottom: 1rem;
+        }
+
+        .home-about-inner ul {
+          margin: 0.5rem 0 1rem 1.5rem;
+        }
+
+        .home-about-inner li {
+          margin-bottom: 0.3rem;
+          font-size: 0.95rem;
+        }
+
+        .scroll-hint.hidden {
+          opacity: 0;
+          pointer-events: none;
+          transition: opacity 0.4s ease;
+        }
+
+        /* --- Utilities --- */
+        .text-center { text-align: center; }
+        .mt-1 { margin-top: 0.5rem; }
+        .mt-2 { margin-top: 1rem; }
+        .mt-3 { margin-top: 1.5rem; }
+        .mb-1 { margin-bottom: 0.5rem; }
+        .mb-2 { margin-bottom: 1rem; }
+        .mb-3 { margin-bottom: 1.5rem; }
+
+        /* Page hiding */
+        .page {
+          display: none;
+        }
+
+        .page.active {
+          display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="site-nav">
+        <div class="nav-container">
+            <a href="#" class="site-logo">
+                <span class="logo-text">Yuchen Yuan</span>
+            </a>
+            <button class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#" data-page="home" class="nav-link active">Home</a></li>
+                <li><a href="#" data-page="about" class="nav-link">About</a></li>
+                <li><a href="#" data-page="publications" class="nav-link">Publications</a></li>
+                <li><a href="#" data-page="teaching" class="nav-link">Teaching</a></li>
+                <li><a href="#" data-page="thoughts" class="nav-link">Thoughts</a></li>
+                <li><a href="#" data-page="projects" class="nav-link">Projects</a></li>
+                <li><a href="#" data-page="cv" class="nav-link">CV</a></li>
+                <li><button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                    <svg class="icon-moon" viewBox="0 0 24 24" fill="currentColor"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                    <svg class="icon-sun" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3" stroke="currentColor" stroke-width="2" stroke-linecap="round"></line><line x1="12" y1="21" x2="12" y2="23" stroke="currentColor" stroke-width="2" stroke-linecap="round"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64" stroke="currentColor" stroke-width="2" stroke-linecap="round"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78" stroke="currentColor" stroke-width="2" stroke-linecap="round"></line><line x1="1" y1="12" x2="3" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"></line><line x1="21" y1="12" x2="23" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36" stroke="currentColor" stroke-width="2" stroke-linecap="round"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22" stroke="currentColor" stroke-width="2" stroke-linecap="round"></line></svg>
+                </button></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="site-content">
+        <!-- Home Page -->
+        <div id="home" class="page active">
+            <div class="home-hero">
+                <div class="hero-photo">
+                    <img src="assets/images/profile.jpg" alt="Yuchen (Ethan) Yuan">
+                </div>
+                <div class="hero-text">
+                    <h1>Yuchen (Ethan) Yuan</h1>
+                    <div class="affiliation">PhD Student in Information Technology, George Mason University</div>
+                    <p class="intro">I am a Ph.D. student in Information Technology at George Mason University, advised by <a href="https://www.gmu.edu/profiles/lyang" target="_blank">Dr. Lei Yang</a> and <a href="https://www.gmu.edu/profiles/wjiang8" target="_blank">Dr. Weiwen Jiang</a>. I am currently working on AI for Science, with a focus on acoustic imaging applications in geoscience and healthcare. I am passionate about making complex concepts accessible and helping people prepare for a future where humans and AI work together.</p>
+                    <div class="hero-links">
+                        <a href="mailto:yyuan21@gmu.edu">Email</a>
+                        <a href="https://github.com/TheYuchen" target="_blank">GitHub</a>
+                        <a href="#" target="_blank">Scholar</a>
+                        <a href="#">CV</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="home-section">
+                <h2>News</h2>
+                <ul class="news-list">
+                    <li>
+                        <span class="news-date">Mar 2026</span>
+                        <span class="news-text">Personal website is live!</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="scroll-hint" id="scrollHint">
+                <span class="scroll-hint-text">More about me</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+            </div>
+
+            <div class="home-about" id="homeAbout">
+                <div class="home-about-inner">
+                    <h2>About Me</h2>
+                    <p>I am a Ph.D. student in Information Technology at George Mason University, advised by <a href="https://www.gmu.edu/profiles/lyang" target="_blank">Dr. Lei Yang</a> and <a href="https://www.gmu.edu/profiles/wjiang8" target="_blank">Dr. Weiwen Jiang</a>. My research focuses on AI for Science, particularly exploring the intersection of artificial intelligence and scientific discovery.</p>
+
+                    <h3>Education</h3>
+                    <ul>
+                        <li>BS in Computer Science, Nanjing University of Information Science and Technology (NUIST), 2022-2024</li>
+                        <li>BS in Communication Engineering, Hangzhou Dianzi University (HDU), 2018-2022</li>
+                    </ul>
+
+                    <h3>Research Interests</h3>
+                    <ul>
+                        <li>Deep learning for geophysical acoustic imaging</li>
+                        <li>AI-driven medical acoustic imaging</li>
+                    </ul>
+
+                    <h3>Looking Ahead</h3>
+                    <p>Beyond my immediate research, I am drawn to two broader questions: how AI can be thoughtfully applied across more domains of science and daily life, and how we can help more people understand, use, and benefit from AI as it becomes a fundamental part of our world.</p>
+                    <p>I believe we are heading toward a future where humans and AI work together in ways we are only beginning to imagine. My hope is that by building accessible tools and sharing ideas openly, I can play a small part in preparing for that future, one where technology frees people from tedious work and leaves more room for curiosity, creativity, and the simple joy of being alive.</p>
+                    <img src="assets/images/vision-banner.png" alt="A vision of humans and AI coexisting" style="width: 100%; border-radius: 8px; margin-top: 1rem;">
+                </div>
+            </div>
+        </div>
+
+        <!-- About Page -->
+        <div id="about" class="page">
+            <div class="page-header">
+                <h1>About Me</h1>
+            </div>
+            <div class="page-content">
+                <h2>Bio</h2>
+                <p>I am a Ph.D. student in Information Technology at George Mason University, advised by <a href="https://www.gmu.edu/profiles/lyang" target="_blank">Dr. Lei Yang</a> and <a href="https://www.gmu.edu/profiles/wjiang8" target="_blank">Dr. Weiwen Jiang</a>. My research focuses on AI for Science, particularly exploring acoustic imaging applications in both geoscience and healthcare.</p>
+
+                <h2>Education</h2>
+                <ul>
+                    <li>BS in Computer Science, Nanjing University of Information Science and Technology (NUIST), 2022-2024</li>
+                    <li>BS in Communication Engineering, Hangzhou Dianzi University (HDU), 2018-2022</li>
+                </ul>
+
+                <h2>Research Interests</h2>
+                <ul>
+                    <li>Deep learning for geophysical acoustic imaging</li>
+                    <li>AI-driven medical acoustic imaging</li>
+                </ul>
+
+                <h2>Looking Ahead</h2>
+                <p>Beyond my immediate research, I am drawn to two broader questions: how AI can be thoughtfully applied across more domains of science and daily life, and how we can help more people understand, use, and benefit from AI as it becomes a fundamental part of our world.</p>
+                <p>I believe we are heading toward a future where humans and AI work together in ways we are only beginning to imagine. My hope is that by building accessible tools and sharing ideas openly, I can play a small part in preparing for that future, one where technology frees people from tedious work and leaves more room for curiosity, creativity, and the simple joy of being alive.</p>
+                <img src="assets/images/vision-banner.png" alt="A vision of humans and AI coexisting" style="width: 100%; border-radius: 8px; margin-top: 1rem;">
+            </div>
+        </div>
+
+        <!-- Publications Page -->
+        <div id="publications" class="page">
+            <div class="page-header">
+                <h1>Publications</h1>
+                <div class="page-subtitle">(* denotes equal contribution)</div>
+            </div>
+            <div class="page-content">
+                <p>Publications will be updated as they become available.</p>
+            </div>
+        </div>
+
+        <!-- Teaching Page -->
+        <div id="teaching" class="page">
+            <div class="page-header">
+                <h1>Teaching</h1>
+            </div>
+            <div class="page-content">
+                <h2>Graduate Teaching Assistant</h2>
+                <p><strong>AIT-736 Applied Machine Learning</strong>, George Mason University, Aug 2025 -- Present</p>
+                <p>I enjoy helping students develop a deep understanding of machine learning concepts and their practical applications. I am committed to making complex ideas accessible and fostering an inclusive learning environment.</p>
+            </div>
+        </div>
+
+        <!-- Thoughts Page -->
+        <div id="thoughts" class="page">
+            <div class="page-header">
+                <h1>Thoughts</h1>
+                <div class="page-subtitle">Writing beyond research</div>
+            </div>
+            <div class="page-content">
+                <ul class="post-list">
+                    <li class="post-list-item">
+                        <h3><a href="#">Welcome to My Blog</a></h3>
+                        <div class="post-list-meta">March 3, 2026</div>
+                        <div class="post-list-excerpt">This is the inaugural post on my personal blog. Welcome! Here I'll be sharing thoughts on research, education, and the intersections between AI and science.</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Projects Page -->
+        <div id="projects" class="page">
+            <div class="page-header">
+                <h1>Projects</h1>
+                <div class="page-subtitle">Interactive demos, tools, and explorations</div>
+            </div>
+            <div class="page-content">
+                <div class="project-grid">
+                    <div class="project-card">
+                        <h3><a href="#">Interactive Wave Propagation Demo</a></h3>
+                        <p>An interactive visualization of acoustic wave propagation through different media, demonstrating key principles in geophysical imaging and medical ultrasound applications.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Physics</span>
+                            <span class="project-tag">Education</span>
+                            <span class="project-tag">JavaScript</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CV Page -->
+        <div id="cv" class="page">
+            <div class="page-header">
+                <h1>Curriculum Vitae</h1>
+            </div>
+            <div class="page-content">
+                <div class="cv-section">
+                    <h2>Education</h2>
+                    <div class="cv-entry">
+                        <div class="cv-year">2025-2029</div>
+                        <div class="cv-details">
+                            <h3>PhD in Information Technology</h3>
+                            <p>George Mason University, advised by <a href="https://www.gmu.edu/profiles/lyang" target="_blank">Dr. Lei Yang</a> and <a href="https://www.gmu.edu/profiles/wjiang8" target="_blank">Dr. Weiwen Jiang</a></p>
+                        </div>
+                    </div>
+                    <div class="cv-entry">
+                        <div class="cv-year">2022-2024</div>
+                        <div class="cv-details">
+                            <h3>BS in Computer Science</h3>
+                            <p>Nanjing University of Information Science and Technology (NUIST)</p>
+                        </div>
+                    </div>
+                    <div class="cv-entry">
+                        <div class="cv-year">2018-2022</div>
+                        <div class="cv-details">
+                            <h3>BS in Communication Engineering</h3>
+                            <p>Hangzhou Dianzi University (HDU)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cv-section">
+                    <h2>Experience</h2>
+                    <div class="cv-entry">
+                        <div class="cv-year">Aug 2025–Present</div>
+                        <div class="cv-details">
+                            <h3>Graduate Teaching Assistant</h3>
+                            <p>AIT-736 Applied Machine Learning, George Mason University</p>
+                        </div>
+                    </div>
+                    <div class="cv-entry">
+                        <div class="cv-year">Jan–Aug 2025</div>
+                        <div class="cv-details">
+                            <h3>Graduate Research Assistant</h3>
+                            <p>George Mason University</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cv-section">
+                    <h2>Skills</h2>
+                    <div class="cv-entry">
+                        <div class="cv-year">Programming</div>
+                        <div class="cv-details">
+                            <p>Python, PyTorch, Git, LaTeX</p>
+                        </div>
+                    </div>
+                    <div class="cv-entry">
+                        <div class="cv-year">Languages</div>
+                        <div class="cv-details">
+                            <p>Chinese (native), English (fluent)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-info">
+                <p>&copy; 2026 Yuchen (Ethan) Yuan</p>
+                <p class="footer-affiliation">PhD Student, George Mason University</p>
+            </div>
+            <div class="footer-links">
+                <a href="https://github.com/TheYuchen" target="_blank" title="GitHub">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                </a>
+                <a href="mailto:yyuan21@gmu.edu" title="Email">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-10 5L2 7"></path></svg>
+                </a>
+                <a href="#" title="Scholar">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 3c1.657 0 3 1.343 3 3s-1.343 3-3 3-3-1.343-3-3 1.343-3 3-3zm6 12.5c0-2.5-3.333-3.75-6-3.75s-6 1.25-6 3.75V19h12v-3.5z"/></svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Theme toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const html = document.documentElement;
+
+        // Load theme from localStorage or system preference
+        function initTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const theme = savedTheme || (prefersDark ? 'dark' : 'light');
+            html.setAttribute('data-theme', theme);
+        }
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        });
+
+        initTheme();
+
+        // Navigation and page switching
+        const navLinks = document.querySelectorAll('.nav-link');
+        const pages = document.querySelectorAll('.page');
+        const navToggle = document.getElementById('navToggle');
+        const navLinksContainer = document.getElementById('navLinks');
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const pageName = link.getAttribute('data-page');
+
+                // Update active nav link
+                navLinks.forEach(l => l.classList.remove('active'));
+                link.classList.add('active');
+
+                // Update active page
+                pages.forEach(p => p.classList.remove('active'));
+                document.getElementById(pageName).classList.add('active');
+
+                // Close mobile menu
+                navLinksContainer.classList.remove('open');
+            });
+        });
+
+        // Mobile menu toggle
+        navToggle.addEventListener('click', () => {
+            navLinksContainer.classList.toggle('open');
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.nav-container')) {
+                navLinksContainer.classList.remove('open');
+            }
+        });
+
+        // Scroll hint and home-about reveal
+        const scrollHint = document.getElementById('scrollHint');
+        const homeAbout = document.getElementById('homeAbout');
+
+        scrollHint.addEventListener('click', () => {
+            homeAbout.classList.add('revealed');
+            scrollHint.classList.add('hidden');
+        });
+
+        // Optional: Auto-reveal on scroll
+        window.addEventListener('scroll', () => {
+            const hintRect = scrollHint.getBoundingClientRect();
+            if (hintRect.top < window.innerHeight * 0.8) {
+                // Could auto-reveal here if desired
+            }
+        });
+    </script>
+</body>
+</html>

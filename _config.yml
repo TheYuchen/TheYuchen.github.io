@@ -1,0 +1,47 @@
+# Site Settings
+title: "Yuchen (Ethan) Yuan"
+description: "PhD Student in IT @ George Mason University | AI for Science"
+url: "https://theyuchen.github.io"
+baseurl: ""
+author: "Yuchen (Ethan) Yuan"
+
+# Build Settings
+markdown: kramdown
+highlighter: rouge
+permalink: /blog/:year/:month/:title/
+
+# Sass
+sass:
+  style: compressed
+
+# Collections
+collections:
+  thoughts:
+    output: true
+    permalink: /thoughts/:title/
+  projects:
+    output: true
+    permalink: /projects/:title/
+
+# Default front matter
+defaults:
+  - scope:
+      path: ""
+      type: "thoughts"
+    values:
+      layout: "post"
+      category: "thoughts"
+      comments: false
+  - scope:
+      path: ""
+      type: "projects"
+    values:
+      layout: "project"
+
+# Exclude from build
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - LICENSE
+  - _preview.html
