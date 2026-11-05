@@ -6,7 +6,7 @@ permalink: /about/
 
 ## Bio
 
-I am a Ph.D. student in Information Technology (Information Sciences and Technology) at George Mason University, advised by [Dr. Lei Yang](https://www.gmu.edu/profiles/lyang) and [Dr. Weiwen Jiang](https://www.gmu.edu/profiles/wjiang8). I am currently working on AI for Science, with a focus on acoustic imaging applications in geoscience and healthcare.
+I am a Ph.D. student in Information Technology (Information Sciences and Technology) at George Mason University, advised by [Dr. Lei Yang](https://www.gmu.edu/profiles/lyang). I am currently working on AI for Science, with a focus on acoustic imaging applications in geoscience and healthcare.
 
 Before joining GMU, I earned a B.S. in Computer Science and Technology from [Nanjing University of Information Science and Technology](https://webs.nuist.edu.cn/_s104/p4908c4864/listm.psp) (2022--2024) and a B.S. in Communication Engineering from [Hangzhou Dianzi University](https://en.hdu.edu.cn/5001/list.htm) (2018--2022).
 

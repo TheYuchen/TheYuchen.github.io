@@ -15,7 +15,7 @@ permalink: /cv/
     <div class="cv-details">
       <h3>Ph.D. in Information Technology</h3>
       <p>George Mason University, Fairfax, VA</p>
-      <p>Advised by <a href="https://www.gmu.edu/profiles/lyang" target="_blank">Dr. Lei Yang</a> and <a href="https://www.gmu.edu/profiles/wjiang8" target="_blank">Dr. Weiwen Jiang</a></p>
+      <p>Advised by <a href="https://www.gmu.edu/profiles/lyang" target="_blank">Dr. Lei Yang</a></p>
     </div>
   </div>
 
