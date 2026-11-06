@@ -26,14 +26,6 @@ permalink: /cv/
       <p><a href="https://webs.nuist.edu.cn/_s104/p4908c4864/listm.psp" target="_blank">Nanjing University of Information Science and Technology</a></p>
     </div>
   </div>
-
-  <div class="cv-entry">
-    <span class="cv-year">2018 -- 2022</span>
-    <div class="cv-details">
-      <h3>B.S. in Communication Engineering</h3>
-      <p><a href="https://en.hdu.edu.cn/5001/list.htm" target="_blank">Hangzhou Dianzi University</a></p>
-    </div>
-  </div>
 </div>
 
 ## Experience
